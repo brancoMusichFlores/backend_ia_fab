@@ -49,8 +49,8 @@
     ],
     "ec2": [
         {
-            "instance_size": "MICRO",
-            "instance_class": "T2",
+            "instance_size": "XLARGE",
+            "instance_class": "M5",
             "ami": "web-server-fab",
             "volume": "50",
             "instance_name": "instancia_backend"

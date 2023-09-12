@@ -70,6 +70,7 @@ def analisis():
     url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={request_data['coordenadas']}&radius={radius}&type={type}&keyword={keyword}&key={api_token}"
     response = requests.get(url)
     data = response.json()
+    nearest_hospital = ''
     if "results" in data:
         hospitals = data["results"]
         if hospitals:
