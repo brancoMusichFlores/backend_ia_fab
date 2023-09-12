@@ -1,0 +1,117 @@
+{
+    "project": {
+        "short_name": "FAB",
+        "name": "First Aid Burn"
+    },
+    "vpc": {
+        "e_rango_cidr": "10.10.0.0/16",
+        "enableDnsHostnames": true,
+        "enableDnsSupport": true,
+        "e_cantidad_de_NAT": 1,
+        "vpnGateway": true,
+        "o_configuracion_subnets": [
+            {
+                "cidr": 21,
+                "type": "Privada"
+            },
+            {
+                "cidr": 21,
+                "type": "Publica"
+            }
+        ]
+    },
+    "launchTemplate": [
+        {
+            "usedFor": "backend-app",
+            "nombre": "backend-app",
+            "instanceClass": "t2",
+            "instanceSize": "micro",
+            "keyPair": {
+                "o_name": "backend-app",
+                "o_description": "KeyPair de first-aid-burn-1-app",
+                "o_storePublicKey": true
+            },
+            "role": {
+                "o_policies": [
+                    "AmazonS3FullAccess",
+                    "AmazonSSMManagedInstanceCore",
+                    "CloudWatchAgentServerPolicy",
+                    "CloudWatchFullAccess",
+                    "AWSCloudFormationReadOnlyAccess",
+                    "SecretsManagerReadWrite"
+                ],
+                "o_assumedBy": "ec2.amazonaws.com"
+            },
+            "machineImage": {
+                "o_operatingSystemType": "Linux"
+            }
+        }
+    ],
+    "ec2": [
+        {
+            "instance_size": "MICRO",
+            "instance_class": "T2",
+            "ami": "web-server-fab",
+            "volume": "50",
+            "instance_name": "instancia_backend"
+        }
+    ],
+    "autoScalingGroup": [
+        {
+            "usedFor": "backend-app",
+            "nombre": "backend-app",
+            "maxCapacity": 1,
+            "minCapacity": 1,
+            "desiredCapacity": 1,
+            "o_healthCheckGracePeriod": 30,
+            "e_cooldown": 200,
+            "o_targetGroup": {
+                "o_port": 80,
+                "nombre": "backend-app"
+            }
+        }
+    ],
+    "elasticLoadBalancer": [
+        {
+            "typeSubnets": "public",
+            "nombre": "backend-app",
+            "usedFor": "backend-app"
+        }
+    ],
+    "dynamo": [
+        {
+            "o_name": "first-aid-burn",
+            "o_partition_name": "grado"
+        }
+    ],
+    "webApplicationFirewall": {
+        "nombre": "waf",
+        "tipo": "CLOUDFRONT",
+        "managedRules": [
+            {
+                "nameRule": "AWSManagedRulesAmazonIpReputationList",
+                "priority": 0
+            },
+            {
+                "nameRule": "AWSManagedRulesPHPRuleSet",
+                "priority": 1
+            },
+            {
+                "nameRule": "AWSManagedRulesLinuxRuleSet",
+                "priority": 2
+            },
+            {
+                "nameRule": "AWSManagedRulesKnownBadInputsRuleSet",
+                "priority": 3
+            },
+            {
+                "nameRule": "AWSManagedRulesAdminProtectionRuleSet",
+                "priority": 4
+            },
+            {
+                "nameRule": "AWSManagedRulesCommonRuleSet",
+                "priority": 5
+            }
+        ]
+    }
+}

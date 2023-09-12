@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "BurnModularCucei",
+    "slug": "BurnModularCucei",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "BurnModularCucei"
+}
