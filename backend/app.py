@@ -74,7 +74,7 @@ def analisis():
     if "results" in data:
         hospitals = data["results"]
         if hospitals:
-            nearest_hospital = hospitals[0]['name']
+            nearest_hospital = { "nombre" : hospitals[0]['name'], "coordenadas": hospitals[0]['geometry']['location']}
     grado = ''
     necesita_hospital = 'si'
     if predicted_class_index == "1":
@@ -84,8 +84,8 @@ def analisis():
         grado = "Segundo grado"
     else:
         grado = "Tercer grado"
-    
-    return jsonify('{"hospital": "' + nearest_hospital  + '", "resultado" : "'+ grado +'", "cuidados" :'+ str(cuidados).replace("\'",'"') +', "necesita_hospital" : "' + necesita_hospital +'"}')
+   
+    return jsonify('{"hospital": ' + str(nearest_hospital).replace("\'",'"')  + ', "resultado" : "'+ grado +'", "cuidados" :'+ str(cuidados).replace("\'",'"') +', "necesita_hospital" : "' + necesita_hospital +'"}')
 
 if __name__ == "__main__":
     app.debug = True
