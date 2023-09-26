@@ -37,10 +37,10 @@ export default function App() {
             if (rn === "Inicio") {
               iconName = focused ? 'home' : 'home-outline';
 
-            } else if (rn === "Camera") {
-              iconName = focused ? 'camera' : 'list-outline';
+            } else if (rn === "Analisis") {
+              iconName = focused ? 'camera' : 'camera-outline';
 
-            } else if (rn === "Settings") {
+            } else if (rn === "About Us") {
               iconName = focused ? 'settings' : 'settings-outline';
             }
 
@@ -63,8 +63,8 @@ export default function App() {
         >
 
         <Tab.Screen name="Inicio" component={MedicalScreen} />
-        <Tab.Screen name="Camera" component={CameraScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="Analisis" component={CameraScreen} />
+        <Tab.Screen name="About Us" component={SettingsScreen} />
 
       </Tab.Navigator>
     </NavigationContainer>

@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/JosefinSans-Regular.ttf",
+      "sha1": "95f405d66578ae639e154a5249f4590098684ba1"
+    },
+    {
+      "path": "assets/fonts/Raleway-Medium.ttf",
+      "sha1": "22e19cd5ad425d646f6b95eaf18044b675557881"
+    },
+    {
+      "path": "assets/fonts/Raleway-Regular.ttf",
+      "sha1": "e199aa653758d7e6bf443396329fcdd80f97dc01"
+    },
+    {
+      "path": "assets/fonts/Raleway-SemiBold.ttf",
+      "sha1": "eba085cb0997e4a07420fedba782f92ae95e8062"
+    }
+  ]
+}
